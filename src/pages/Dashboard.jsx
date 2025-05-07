@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import StrategyPerformance from '../components/dashboard/StrategyPerformance';
 import PortfolioSummary from '../components/dashboard/PortfolioSummary';
 import AccountBalance from '../components/dashboard/AccountBalance';
-import RecentMarkets from '../components/dashboard/RecentMarkets';
+import RecentInvestments from '../components/dashboard/RecentInvestments';
 
 const Dashboard = () => {
   // State for dashboard data
@@ -125,12 +125,12 @@ const Dashboard = () => {
       {/* Markets Section */}
       <div className="p-5 bg-white rounded-lg shadow dark:bg-gray-800">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Recent Markets</h2>
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Recent Investments</h2>
           <Link to="/markets" className="text-sm font-medium text-blue-600 hover:text-blue-500">
             View all
           </Link>
         </div>
-        <RecentMarkets />
+        <RecentInvestments />
       </div>
 
       {/* Account Balances */}

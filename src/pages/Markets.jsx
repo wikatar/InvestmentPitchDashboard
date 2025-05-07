@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Markets = () => {
+const Investments = () => {
   const [loading, setLoading] = useState(true);
   const [markets, setMarkets] = useState([]);
   const [filter, setFilter] = useState('all');
@@ -110,7 +110,7 @@ const Markets = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Markets</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Investments</h1>
       
       {/* Filters */}
       <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-800">
@@ -134,7 +134,7 @@ const Markets = () => {
           </div>
           
           <div className="md:col-span-2">
-            <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Search Markets</label>
+            <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Search Investments</label>
             <input
               type="text"
               id="search"
@@ -150,7 +150,7 @@ const Markets = () => {
       {/* Markets List */}
       {filteredMarkets.length === 0 ? (
         <div className="p-8 text-center">
-          <p className="text-gray-500 dark:text-gray-400">No markets found matching your filters.</p>
+          <p className="text-gray-500 dark:text-gray-400">No investments found matching your filters.</p>
         </div>
       ) : (
         <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-800">
@@ -227,4 +227,4 @@ const Markets = () => {
   );
 };
 
-export default Markets; 
+export default Investments; 

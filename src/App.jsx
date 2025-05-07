@@ -13,7 +13,7 @@ const PortfolioDetail = lazy(() => import('./pages/PortfolioDetail'));
 const PortfolioCreate = lazy(() => import('./pages/PortfolioCreate'));
 const Accounts = lazy(() => import('./pages/Wallets'));
 const AccountDetail = lazy(() => import('./pages/WalletDetail'));
-const Markets = lazy(() => import('./pages/Markets'));
+const Investments = lazy(() => import('./pages/Markets'));
 const MarketDetail = lazy(() => import('./pages/MarketDetail'));
 const Analytics = lazy(() => import('./pages/Analytics'));
 const Settings = lazy(() => import('./pages/Settings'));
@@ -50,7 +50,7 @@ function App() {
           </Route>
           
           <Route path="/markets">
-            <Route index element={<Markets />} />
+            <Route index element={<Investments />} />
             <Route path=":id" element={<MarketDetail />} />
           </Route>
           

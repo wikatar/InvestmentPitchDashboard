@@ -19,10 +19,10 @@ const PortfolioSummary = () => {
   const portfolioData = {
     totalValue: 25000,
     allocations: [
-      { name: 'US Election', value: 10000, percentage: 40, color: 'rgba(59, 130, 246, 0.8)' },
-      { name: 'World Cup', value: 7500, percentage: 30, color: 'rgba(16, 185, 129, 0.8)' },
-      { name: 'Fed Interest Rates', value: 5000, percentage: 20, color: 'rgba(249, 115, 22, 0.8)' },
-      { name: 'Other Markets', value: 2500, percentage: 10, color: 'rgba(139, 92, 246, 0.8)' },
+      { name: 'US Equities', value: 10000, percentage: 40, color: 'rgba(59, 130, 246, 0.8)' },
+      { name: 'International Stocks', value: 7500, percentage: 30, color: 'rgba(16, 185, 129, 0.8)' },
+      { name: 'Fixed Income', value: 5000, percentage: 20, color: 'rgba(249, 115, 22, 0.8)' },
+      { name: 'Alternative Assets', value: 2500, percentage: 10, color: 'rgba(139, 92, 246, 0.8)' },
     ]
   };
 
@@ -87,7 +87,7 @@ const PortfolioSummary = () => {
       </div>
 
       <div className="p-4 bg-white rounded-lg shadow dark:bg-gray-800">
-        <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">Allocation by Market</h3>
+        <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">Asset Allocation</h3>
         
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-7">
           <div className="lg:col-span-4">

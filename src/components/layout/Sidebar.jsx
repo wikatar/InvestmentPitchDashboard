@@ -17,7 +17,7 @@ const navigation = [
   { name: 'Strategies', href: '/strategies', icon: RectangleGroupIcon },
   { name: 'Portfolios', href: '/portfolios', icon: BriefcaseIcon },
   { name: 'Accounts', href: '/accounts', icon: WalletIcon },
-  { name: 'Markets', href: '/markets', icon: BanknotesIcon },
+  { name: 'Investments', href: '/markets', icon: BanknotesIcon },
   { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
   { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
 ];
@@ -98,8 +98,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             isActive
                               ? 'text-primary-600 dark:text-primary-400'
                               : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-300'
-                          }`
-                        }
+                          }`                        }
                         aria-hidden="true"
                       />
                       {item.name}

@@ -20,7 +20,7 @@ const navigation = [
   { name: 'Strategies', href: '/strategies', icon: RectangleGroupIcon },
   { name: 'Portfolios', href: '/portfolios', icon: BriefcaseIcon },
   { name: 'Accounts', href: '/accounts', icon: WalletIcon },
-  { name: 'Markets', href: '/markets', icon: BanknotesIcon },
+  { name: 'Investments', href: '/markets', icon: BanknotesIcon },
   { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
   { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
 ];
