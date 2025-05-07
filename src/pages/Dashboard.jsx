@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import StrategyPerformance from '../components/dashboard/StrategyPerformance';
 import PortfolioSummary from '../components/dashboard/PortfolioSummary';
-import WalletBalance from '../components/dashboard/WalletBalance';
+import AccountBalance from '../components/dashboard/WalletBalance';
 import RecentMarkets from '../components/dashboard/RecentMarkets';
 
 const Dashboard = () => {
@@ -13,7 +13,7 @@ const Dashboard = () => {
     dailyPnl: 0,
     activeStrategies: 0,
     activePositions: 0,
-    walletBalance: 0
+    accountBalance: 0
   });
 
   // Mock data loading
@@ -30,7 +30,7 @@ const Dashboard = () => {
           dailyPnl: 78.54,
           activeStrategies: 4,
           activePositions: 12,
-          walletBalance: 5432.10
+          accountBalance: 5432.10
         });
         
         setLoading(false);
@@ -92,8 +92,8 @@ const Dashboard = () => {
         </div>
 
         <div className="p-5 bg-white rounded-lg shadow dark:bg-gray-800">
-          <p className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Wallet Balance</p>
-          <p className="mt-1 text-3xl font-semibold text-gray-700 dark:text-gray-300">${stats.walletBalance.toFixed(2)}</p>
+          <p className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Account Balance</p>
+          <p className="mt-1 text-3xl font-semibold text-gray-700 dark:text-gray-300">${stats.accountBalance.toFixed(2)}</p>
         </div>
       </div>
 
@@ -133,15 +133,15 @@ const Dashboard = () => {
         <RecentMarkets />
       </div>
 
-      {/* Wallet Balances */}
+      {/* Account Balances */}
       <div className="p-5 bg-white rounded-lg shadow dark:bg-gray-800">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Wallet Balances</h2>
-          <Link to="/wallets" className="text-sm font-medium text-blue-600 hover:text-blue-500">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Account Balances</h2>
+          <Link to="/accounts" className="text-sm font-medium text-blue-600 hover:text-blue-500">
             View all
           </Link>
         </div>
-        <WalletBalance />
+        <AccountBalance />
       </div>
     </div>
   );

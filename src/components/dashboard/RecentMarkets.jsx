@@ -19,50 +19,50 @@ const RecentMarkets = () => {
   const markets = [
     {
       id: 1,
-      name: 'Will Trump win the 2024 US Presidential Election?',
-      category: 'Politics',
+      name: 'Apple Inc. (AAPL)',
+      category: 'Technology',
       volume: 1250000,
-      probability: 48,
+      price: 187.48,
       trend: 'up',
-      change: 3.5,
+      change: 1.5,
       lastTraded: '3 mins ago'
     },
     {
       id: 2,
-      name: 'Will France win the World Cup?',
-      category: 'Sports',
+      name: 'Tesla Inc. (TSLA)',
+      category: 'Automotive',
       volume: 850000,
-      probability: 22,
+      price: 214.71,
       trend: 'down',
       change: -1.8,
       lastTraded: '12 mins ago'
     },
     {
       id: 3,
-      name: 'Will the Fed cut interest rates in June?',
-      category: 'Economics',
+      name: 'JPMorgan Chase & Co. (JPM)',
+      category: 'Finance',
       volume: 2100000,
-      probability: 76,
+      price: 198.63,
       trend: 'up',
-      change: 1.2,
+      change: 0.8,
       lastTraded: '5 mins ago'
     },
     {
       id: 4,
-      name: 'Will Bitcoin exceed $100,000 by December?',
-      category: 'Crypto',
+      name: 'Bitcoin ETF (BITO)',
+      category: 'Cryptocurrency',
       volume: 1750000,
-      probability: 35,
+      price: 37.82,
       trend: 'up',
-      change: 5.2,
+      change: 3.2,
       lastTraded: '1 min ago'
     },
     {
       id: 5,
-      name: 'Will Apple release a new iPhone model in September?',
+      name: 'Microsoft Corp. (MSFT)',
       category: 'Technology',
       volume: 980000,
-      probability: 92,
+      price: 425.26,
       trend: 'down',
       change: -0.5,
       lastTraded: '8 mins ago'
@@ -100,7 +100,7 @@ const RecentMarkets = () => {
                       scope="col" 
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200"
                     >
-                      Probability
+                      Price
                     </th>
                     <th 
                       scope="col" 
@@ -133,18 +133,8 @@ const RecentMarkets = () => {
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                         ${market.volume.toLocaleString()}
                       </td>
-                      <td className="px-3 py-4 text-sm font-medium whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="w-16 h-2 mr-2 bg-gray-200 rounded-full dark:bg-gray-700">
-                            <div 
-                              className={`h-2 rounded-full ${
-                                market.probability > 50 ? 'bg-green-500' : 'bg-blue-500'
-                              }`}
-                              style={{ width: `${market.probability}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-gray-700 dark:text-gray-300">{market.probability}%</span>
-                        </div>
+                      <td className="px-3 py-4 text-sm font-medium text-gray-700 whitespace-nowrap dark:text-gray-300">
+                        ${market.price.toFixed(2)}
                       </td>
                       <td className="px-3 py-4 text-sm whitespace-nowrap">
                         <div 
