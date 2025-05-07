@@ -12,7 +12,7 @@ const Settings = () => {
     },
     defaultCurrency: 'USD',
     riskLevel: 'medium',
-    apiKey: 'pk_live_51Ht78iJK6KjJN9oXrFj4JBzL',
+    apiKey: 'sk_live_51Ht78iJK6KjJN9oXrFj4JBzL',
     tradingDefaults: {
       slippage: 0.5
     }
@@ -166,7 +166,7 @@ const Settings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-sm font-medium text-gray-900 dark:text-white">Trade Confirmations</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Receive notifications when trades are executed</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Receive notifications when transactions are executed</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
@@ -181,8 +181,8 @@ const Settings = () => {
             
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-medium text-gray-900 dark:text-white">Market Updates</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Receive notifications about market changes</p>
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white">Investment Updates</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Receive notifications about stock price movements</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
@@ -197,9 +197,9 @@ const Settings = () => {
           </div>
         </div>
         
-        {/* Trading Settings */}
+        {/* Investment Settings */}
         <div className="bg-white rounded-lg shadow p-6 dark:bg-gray-800">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Trading Settings</h2>
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Investment Settings</h2>
           
           <div className="space-y-4">
             <div>
@@ -243,18 +243,17 @@ const Settings = () => {
             
             <div>
               <label htmlFor="slippage" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Default Slippage Tolerance (%)
+                Default Transaction Fee (%)
               </label>
               <input
                 type="number"
                 id="slippage"
-                name="slippage"
                 min="0"
                 max="5"
                 step="0.1"
                 value={settings.tradingDefaults.slippage}
                 onChange={handleSlippageChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               />
             </div>
           </div>
@@ -264,54 +263,45 @@ const Settings = () => {
         <div className="bg-white rounded-lg shadow p-6 dark:bg-gray-800">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">API Settings</h2>
           
-          <div>
-            <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              API Key
-            </label>
-            <div className="mt-1 flex rounded-md shadow-sm">
-              <input
-                type="text"
-                id="apiKey"
-                name="apiKey"
-                readOnly
-                value={settings.apiKey}
-                className="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-              />
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                API Key
+              </label>
+              <div className="mt-1 flex rounded-md shadow-sm">
+                <input
+                  type="text"
+                  id="apiKey"
+                  disabled
+                  value={settings.apiKey}
+                  className="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+                <button
+                  type="button"
+                  className="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 text-gray-700 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700"
+                >
+                  Copy
+                </button>
+              </div>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Use this API key to authenticate with the brokerage API.
+              </p>
               <button
                 type="button"
-                className="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-500 dark:text-gray-300"
-                onClick={() => navigator.clipboard.writeText(settings.apiKey)}
+                className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                  <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                </svg>
+                Regenerate API Key
               </button>
             </div>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Use this API key to authenticate with the Polymarket API.
-            </p>
-          </div>
-          
-          <div className="mt-4">
-            <button
-              type="button"
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-              </svg>
-              Regenerate API Key
-            </button>
           </div>
         </div>
         
-        {/* Form Actions */}
+        {/* Submit button */}
         <div className="flex justify-end">
           <button
             type="submit"
             disabled={saving}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {saving ? 'Saving...' : 'Save Settings'}
           </button>
