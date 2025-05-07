@@ -15,19 +15,19 @@ const AccountDetail = () => {
         // Mock data - in a real app, this would fetch data for the specific account ID
         const mockAccount = {
           id: parseInt(id),
-          name: 'Main Trading Account',
-          address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
-          network: 'Polygon',
+          name: 'Main Investment Account',
+          accountNumber: '7824-5731',
+          institution: 'Fidelity',
           balance: 4250.75,
-          tokens: [
-            { name: 'USDC', balance: 2500.50, value: 2500.50 },
-            { name: 'MATIC', balance: 1750.25, value: 1750.25 }
+          holdings: [
+            { name: 'US Stocks', balance: 2500.50, value: 2500.50 },
+            { name: 'International ETFs', balance: 1750.25, value: 1750.25 }
           ],
           transactions: [
-            { id: 1, type: 'deposit', amount: 1000, token: 'USDC', date: '2023-09-15', status: 'completed' },
-            { id: 2, type: 'withdraw', amount: 500, token: 'USDC', date: '2023-09-10', status: 'completed' },
-            { id: 3, type: 'deposit', amount: 2000, token: 'MATIC', date: '2023-09-05', status: 'completed' },
-            { id: 4, type: 'withdraw', amount: 250, token: 'MATIC', date: '2023-08-28', status: 'completed' }
+            { id: 1, type: 'deposit', amount: 1000, asset: 'Cash', date: '2023-09-15', status: 'completed' },
+            { id: 2, type: 'withdrawal', amount: 500, asset: 'Cash', date: '2023-09-10', status: 'completed' },
+            { id: 3, type: 'purchase', amount: 2000, asset: 'AAPL', date: '2023-09-05', status: 'completed' },
+            { id: 4, type: 'sale', amount: 250, asset: 'MSFT', date: '2023-08-28', status: 'completed' }
           ]
         };
         
@@ -68,7 +68,7 @@ const AccountDetail = () => {
         <div>
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">{account.name}</h1>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Network: {account.network}
+            Institution: {account.institution}
           </p>
         </div>
         <div className="flex space-x-3">
@@ -80,7 +80,7 @@ const AccountDetail = () => {
           <button 
             className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            Deposit Funds
+            Transfer Funds
           </button>
         </div>
       </div>
@@ -98,41 +98,32 @@ const AccountDetail = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Address</h3>
+            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Account Number</h3>
             <div className="mt-1 flex items-center">
-              <p className="text-gray-900 dark:text-white font-mono text-sm truncate">
-                {account.address}
+              <p className="text-gray-900 dark:text-white text-sm">
+                {account.accountNumber}
               </p>
-              <button 
-                className="ml-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                onClick={() => navigator.clipboard.writeText(account.address)}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                  <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                </svg>
-              </button>
             </div>
           </div>
           
           <div>
-            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Network</h3>
+            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Institution</h3>
             <p className="mt-1 text-lg font-medium text-gray-900 dark:text-white">
-              {account.network}
+              {account.institution}
             </p>
           </div>
         </div>
       </div>
       
-      {/* Token Balances */}
+      {/* Holdings */}
       <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
-        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Token Balances</h2>
+        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Holdings</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-700">
               <tr>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
-                  Token
+                  Asset
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
                   Balance
@@ -146,23 +137,23 @@ const AccountDetail = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-              {account.tokens.map((token, index) => (
+              {account.holdings.map((holding, index) => (
                 <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                    {token.name}
+                    {holding.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {token.balance.toFixed(2)}
+                    ${holding.balance.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    ${token.value.toFixed(2)}
+                    ${holding.value.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button className="text-blue-600 hover:text-blue-900 mr-3 dark:text-blue-400 dark:hover:text-blue-300">
-                      Deposit
+                      Buy
                     </button>
                     <button className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
-                      Withdraw
+                      Sell
                     </button>
                   </td>
                 </tr>
@@ -186,7 +177,7 @@ const AccountDetail = () => {
                   Amount
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
-                  Token
+                  Asset
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
                   Date
@@ -200,30 +191,28 @@ const AccountDetail = () => {
               {account.transactions.map((transaction) => (
                 <tr key={transaction.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      transaction.type === 'deposit' 
-                        ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100'
-                        : 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100'
+                    <span className={`capitalize ${
+                      transaction.type === 'deposit' || transaction.type === 'purchase' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
                     }`}>
-                      {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}
+                      {transaction.type}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {transaction.amount}
+                    ${transaction.amount.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {transaction.token}
+                    {transaction.asset}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {new Date(transaction.date).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      transaction.status === 'completed' 
-                        ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100'
-                        : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100'
+                      transaction.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100' : 
+                      transaction.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100' : 
+                      'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100'
                     }`}>
-                      {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+                      {transaction.status}
                     </span>
                   </td>
                 </tr>
@@ -236,4 +225,4 @@ const AccountDetail = () => {
   );
 };
 
-export default AccountDetail; 
+export default WalletDetail; 
