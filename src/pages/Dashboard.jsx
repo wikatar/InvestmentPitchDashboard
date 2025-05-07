@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import StrategyPerformance from '../components/dashboard/StrategyPerformance';
 import PortfolioSummary from '../components/dashboard/PortfolioSummary';
-import AccountBalance from '../components/dashboard/WalletBalance';
+import AccountBalance from '../components/dashboard/AccountBalance';
 import RecentMarkets from '../components/dashboard/RecentMarkets';
 
 const Dashboard = () => {
