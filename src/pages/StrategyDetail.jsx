@@ -22,9 +22,9 @@ const StrategyDetail = () => {
           pnl: 452.37,
           roi: 12.5,
           positions: [
-            { id: 1, market: 'Will Trump win the 2024 election?', position: 'No', amount: 250, currentPrice: 0.52, entryPrice: 0.47 },
-            { id: 2, market: 'Will Ethereum price exceed $4000 by Oct 31?', position: 'Yes', amount: 175, currentPrice: 0.32, entryPrice: 0.28 },
-            { id: 3, market: 'Will inflation exceed 3% in Q4 2023?', position: 'Yes', amount: 300, currentPrice: 0.71, entryPrice: 0.65 }
+            { id: 1, market: 'Apple Inc. (AAPL)', position: 'Long', amount: 250, currentPrice: 187.52, entryPrice: 177.47 },
+            { id: 2, market: 'S&P 500 ETF (SPY)', position: 'Long', amount: 175, currentPrice: 462.32, entryPrice: 458.28 },
+            { id: 3, market: 'Microsoft Corp. (MSFT)', position: 'Short', amount: 300, currentPrice: 391.71, entryPrice: 405.65 }
           ],
           parameters: {
             minVolume: 1000000,

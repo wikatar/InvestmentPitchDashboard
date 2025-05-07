@@ -12,35 +12,35 @@ const MarketDetail = () => {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
         
-        // Mock data - in a real app, this would fetch data for the specific market ID
+        // Mock data - in a real app, this would fetch data for the specific investment ID
         const mockMarket = {
           id: parseInt(id),
-          name: 'Will Trump win the 2024 election?',
-          description: 'Market resolves to YES if Donald Trump wins the 2024 US Presidential Election.',
-          category: 'Politics',
+          name: 'Apple Inc. (AAPL)',
+          description: 'Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide.',
+          category: 'Technology',
           volume24h: 256340,
-          liquidity: 785920,
-          expiresAt: '2024-11-05',
+          marketCap: 2785920000000,
+          dividend: '0.96',
           outcomes: [
-            { name: 'Yes', price: 0.47, volume: 125640, liquidity: 392960 },
-            { name: 'No', price: 0.53, volume: 130700, liquidity: 392960 }
+            { name: 'Current Price', price: 187.48, volume: 12564000, change: 1.52 },
+            { name: '52wk High', price: 198.23, date: '2023-12-14' }
           ],
           priceHistory: [
-            { date: '2023-08-01', yes: 0.42, no: 0.58 },
-            { date: '2023-08-15', yes: 0.45, no: 0.55 },
-            { date: '2023-09-01', yes: 0.43, no: 0.57 },
-            { date: '2023-09-15', yes: 0.46, no: 0.54 },
-            { date: '2023-10-01', yes: 0.47, no: 0.53 }
+            { date: '2023-08-01', price: 182.42, volume: 9850000 },
+            { date: '2023-08-15', price: 185.45, volume: 10250000 },
+            { date: '2023-09-01', price: 183.43, volume: 9650000 },
+            { date: '2023-09-15', price: 186.46, volume: 11240000 },
+            { date: '2023-10-01', price: 187.47, volume: 10870000 }
           ],
           yourPositions: [
-            { outcome: 'Yes', shares: 500, avgPrice: 0.44, currentPrice: 0.47 }
+            { shares: 10, avgPrice: 175.44, currentPrice: 187.48 }
           ]
         };
         
         setMarket(mockMarket);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching market:', error);
+        console.error('Error fetching investment data:', error);
         setLoading(false);
       }
     };
@@ -59,10 +59,10 @@ const MarketDetail = () => {
   if (!market) {
     return (
       <div className="text-center p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Market not found</h2>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">The market you're looking for doesn't exist or has been removed.</p>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Investment not found</h2>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">The investment you're looking for doesn't exist or has been removed.</p>
         <Link to="/markets" className="mt-4 inline-block text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-          Back to markets
+          Back to investments
         </Link>
       </div>
     );
@@ -83,7 +83,7 @@ const MarketDetail = () => {
               {market.category}
             </span>
             <span className="ml-3 text-sm text-gray-600 dark:text-gray-400">
-              Expires: {new Date(market.expiresAt).toLocaleDateString()}
+              Dividend: ${market.dividend}/share
             </span>
           </div>
         </div>
@@ -98,7 +98,7 @@ const MarketDetail = () => {
       
       {/* Market Overview */}
       <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
-        <h2 className="text-lg font-medium text-gray-900 dark:text-white">Market Overview</h2>
+        <h2 className="text-lg font-medium text-gray-900 dark:text-white">Investment Overview</h2>
         <p className="mt-2 text-gray-600 dark:text-gray-400">{market.description}</p>
         
         <div className="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -110,21 +110,21 @@ const MarketDetail = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Liquidity</h3>
+            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Market Cap</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
-              ${market.liquidity.toLocaleString()}
+              ${market.marketCap.toLocaleString()}
             </p>
           </div>
           
           <div>
-            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">YES Price</h3>
+            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Current Price</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
               ${market.outcomes[0].price.toFixed(2)}
             </p>
           </div>
           
           <div>
-            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">NO Price</h3>
+            <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">52 Week High</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
               ${market.outcomes[1].price.toFixed(2)}
             </p>
@@ -132,33 +132,57 @@ const MarketDetail = () => {
         </div>
       </div>
       
-      {/* Outcome Prices */}
+      {/* Stock Details */}
       <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
-        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Outcome Prices</h2>
+        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Stock Details</h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {market.outcomes.map((outcome, index) => (
-            <div key={index} className="bg-gray-50 p-4 rounded-lg dark:bg-gray-700">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-medium text-gray-900 dark:text-white">{outcome.name}</h3>
-                <span className="text-xl font-bold text-gray-900 dark:text-white">${outcome.price.toFixed(2)}</span>
+          <div className="bg-gray-50 p-4 rounded-lg dark:bg-gray-700">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-medium text-gray-900 dark:text-white">Current Price</h3>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">${market.outcomes[0].price.toFixed(2)}</span>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600 dark:text-gray-400">Volume:</span>
+                <span className="text-gray-900 dark:text-white">{market.outcomes[0].volume.toLocaleString()}</span>
               </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">Volume:</span>
-                  <span className="text-gray-900 dark:text-white">${outcome.volume.toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">Liquidity:</span>
-                  <span className="text-gray-900 dark:text-white">${outcome.liquidity.toLocaleString()}</span>
-                </div>
-              </div>
-              <div className="mt-4">
-                <button className="w-full py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                  Buy {outcome.name}
-                </button>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600 dark:text-gray-400">Change:</span>
+                <span className={market.outcomes[0].change > 0 ? "text-green-600" : "text-red-600"}>
+                  ${market.outcomes[0].change.toFixed(2)} ({(market.outcomes[0].change / (market.outcomes[0].price - market.outcomes[0].change) * 100).toFixed(2)}%)
+                </span>
               </div>
             </div>
-          ))}
+            <div className="mt-4">
+              <button className="w-full py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Buy Shares
+              </button>
+            </div>
+          </div>
+          
+          <div className="bg-gray-50 p-4 rounded-lg dark:bg-gray-700">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-medium text-gray-900 dark:text-white">52 Week High</h3>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">${market.outcomes[1].price.toFixed(2)}</span>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600 dark:text-gray-400">Date:</span>
+                <span className="text-gray-900 dark:text-white">{new Date(market.outcomes[1].date).toLocaleDateString()}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600 dark:text-gray-400">Distance from High:</span>
+                <span className="text-red-600">
+                  -${(market.outcomes[1].price - market.outcomes[0].price).toFixed(2)} ({((market.outcomes[0].price - market.outcomes[1].price) / market.outcomes[1].price * 100).toFixed(2)}%)
+                </span>
+              </div>
+            </div>
+            <div className="mt-4">
+              <button className="w-full py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                Sell Shares
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -171,7 +195,7 @@ const MarketDetail = () => {
               <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
-                    Outcome
+                    Asset
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
                     Shares
@@ -198,7 +222,7 @@ const MarketDetail = () => {
                   return (
                     <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                        {position.outcome}
+                        {market.name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         {position.shares}
@@ -214,7 +238,7 @@ const MarketDetail = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
-                          Close
+                          Sell
                         </button>
                       </td>
                     </tr>

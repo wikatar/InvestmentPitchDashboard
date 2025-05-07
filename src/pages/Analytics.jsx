@@ -52,11 +52,11 @@ const Analytics = () => {
         
         // Category allocation
         const mockCategoryAllocation = [
-          { name: 'Politics', value: 32 },
-          { name: 'Crypto', value: 25 },
-          { name: 'Economics', value: 18 },
-          { name: 'Sports', value: 15 },
-          { name: 'Entertainment', value: 10 }
+          { name: 'Technology', value: 32 },
+          { name: 'Financial', value: 25 },
+          { name: 'Healthcare', value: 18 },
+          { name: 'Consumer Goods', value: 15 },
+          { name: 'Energy', value: 10 }
         ];
         
         // Performance metrics
@@ -234,9 +234,9 @@ const Analytics = () => {
           </div>
         </div>
         
-        {/* Market Category Allocation */}
+        {/* Investment Category Allocation */}
         <div className="p-5 bg-white rounded-lg shadow dark:bg-gray-800">
-          <h2 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">Market Category Allocation</h2>
+          <h2 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">Investment Category Allocation</h2>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
