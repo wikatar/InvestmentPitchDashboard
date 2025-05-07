@@ -3,6 +3,10 @@ import { lazy, Suspense } from 'react';
 import Layout from './components/layout/Layout';
 import LoadingScreen from './components/common/LoadingScreen';
 
+// Direct imports for account-related components to avoid lazy loading issues
+import Accounts from './pages/Accounts';
+import AccountDetail from './pages/AccountDetail';
+
 // Lazy loaded components
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Strategies = lazy(() => import('./pages/Strategies'));
@@ -11,10 +15,8 @@ const StrategyCreate = lazy(() => import('./pages/StrategyCreate'));
 const Portfolios = lazy(() => import('./pages/Portfolios'));
 const PortfolioDetail = lazy(() => import('./pages/PortfolioDetail'));
 const PortfolioCreate = lazy(() => import('./pages/PortfolioCreate'));
-const Accounts = lazy(() => import('./pages/Accounts'));
-const AccountDetail = lazy(() => import('./pages/AccountDetail'));
-const Investments = lazy(() => import('./pages/Markets'));
-const MarketDetail = lazy(() => import('./pages/MarketDetail'));
+const Investments = lazy(() => import('./pages/Investments'));
+const InvestmentDetail = lazy(() => import('./pages/InvestmentDetail'));
 const Analytics = lazy(() => import('./pages/Analytics'));
 const Settings = lazy(() => import('./pages/Settings'));
 const Login = lazy(() => import('./pages/Login'));
@@ -49,9 +51,9 @@ function App() {
             <Route path=":id" element={<AccountDetail />} />
           </Route>
           
-          <Route path="/markets">
+          <Route path="/investments">
             <Route index element={<Investments />} />
-            <Route path=":id" element={<MarketDetail />} />
+            <Route path=":id" element={<InvestmentDetail />} />
           </Route>
           
           <Route path="/analytics" element={<Analytics />} />

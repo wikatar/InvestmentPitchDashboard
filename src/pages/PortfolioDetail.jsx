@@ -16,21 +16,21 @@ const PortfolioDetail = () => {
         const mockPortfolio = {
           id: parseInt(id),
           name: 'Conservative Portfolio',
-          description: 'Lower risk markets with high probability outcomes',
+          description: 'Lower risk investments focused on stable growth',
           totalValue: 2345.67,
           pnl: 189.42,
           pnlPercentage: 8.35,
           createdAt: '2023-07-15',
           positions: [
-            { id: 1, market: 'Will Trump win the 2024 election?', position: 'No', amount: 500, currentPrice: 0.52, entryPrice: 0.47 },
-            { id: 2, market: 'Will Ethereum price exceed $4000 by Oct 31?', position: 'Yes', amount: 350, currentPrice: 0.32, entryPrice: 0.28 },
-            { id: 3, market: 'Will inflation exceed 3% in Q4 2023?', position: 'Yes', amount: 600, currentPrice: 0.71, entryPrice: 0.65 },
-            { id: 4, market: 'Will SpaceX launch Starship to orbit in 2023?', position: 'No', amount: 450, currentPrice: 0.57, entryPrice: 0.52 },
-            { id: 5, market: 'Will Taylor Swift announce a new album in 2023?', position: 'Yes', amount: 300, currentPrice: 0.62, entryPrice: 0.58 }
+            { id: 1, market: 'Apple Inc. (AAPL)', position: 'Long', amount: 500, currentPrice: 182.52, entryPrice: 165.47 },
+            { id: 2, market: 'Vanguard Total Stock Market ETF (VTI)', position: 'Long', amount: 350, currentPrice: 252.32, entryPrice: 228.75 },
+            { id: 3, market: 'iShares TIPS Bond ETF (TIP)', position: 'Long', amount: 600, currentPrice: 107.71, entryPrice: 101.65 },
+            { id: 4, market: 'Tesla Inc. (TSLA)', position: 'Short', amount: 450, currentPrice: 217.58, entryPrice: 242.10 },
+            { id: 5, market: 'Microsoft Corp. (MSFT)', position: 'Long', amount: 300, currentPrice: 412.62, entryPrice: 380.58 }
           ],
           strategies: [
-            { id: 1, name: 'Market Making', allocation: 40 },
-            { id: 2, name: 'Volume Arbitrage', allocation: 60 }
+            { id: 1, name: 'Value Investing', allocation: 40 },
+            { id: 2, name: 'Index Tracking', allocation: 60 }
           ],
           historicalPerformance: [
             { date: '2023-06-15', value: 2000.00 },
@@ -76,7 +76,11 @@ const PortfolioDetail = () => {
 
   // Calculate total PnL for positions
   const calculatePositionPnl = (position) => {
-    return position.amount * (position.currentPrice - position.entryPrice);
+    if (position.position === "Long") {
+      return position.amount * (position.currentPrice - position.entryPrice) / position.entryPrice;
+    } else {
+      return position.amount * (position.entryPrice - position.currentPrice) / position.entryPrice;
+    }
   };
 
   return (
@@ -152,7 +156,7 @@ const PortfolioDetail = () => {
             <thead className="bg-gray-50 dark:bg-gray-700">
               <tr>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
-                  Market
+                  Security
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">
                   Position
@@ -177,7 +181,9 @@ const PortfolioDetail = () => {
             <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
               {portfolio.positions.map((position) => {
                 const pnl = calculatePositionPnl(position);
-                const pnlPercentage = ((position.currentPrice - position.entryPrice) / position.entryPrice) * 100;
+                const pnlPercentage = position.position === "Long" 
+                  ? ((position.currentPrice - position.entryPrice) / position.entryPrice) * 100
+                  : ((position.entryPrice - position.currentPrice) / position.entryPrice) * 100;
                 
                 return (
                   <tr key={position.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
@@ -197,7 +203,7 @@ const PortfolioDetail = () => {
                       ${position.currentPrice.toFixed(2)}
                     </td>
                     <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${pnl >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                      ${pnl.toFixed(2)} ({pnlPercentage >= 0 ? '+' : ''}{pnlPercentage.toFixed(2)}%)
+                      ${Math.abs(pnl).toFixed(2)} ({pnlPercentage >= 0 ? '+' : ''}{pnlPercentage.toFixed(2)}%)
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <button className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">

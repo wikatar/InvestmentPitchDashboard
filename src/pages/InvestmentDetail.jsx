@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-const MarketDetail = () => {
+const InvestmentDetail = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [market, setMarket] = useState(null);
+  const [investment, setInvestment] = useState(null);
 
   useEffect(() => {
-    const fetchMarket = async () => {
+    const fetchInvestment = async () => {
       try {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
         
         // Mock data - in a real app, this would fetch data for the specific investment ID
-        const mockMarket = {
+        const mockInvestment = {
           id: parseInt(id),
           name: 'Apple Inc. (AAPL)',
           description: 'Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide.',
@@ -37,7 +37,7 @@ const MarketDetail = () => {
           ]
         };
         
-        setMarket(mockMarket);
+        setInvestment(mockInvestment);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching investment data:', error);
@@ -45,7 +45,7 @@ const MarketDetail = () => {
       }
     };
 
-    fetchMarket();
+    fetchInvestment();
   }, [id]);
 
   if (loading) {
@@ -56,12 +56,12 @@ const MarketDetail = () => {
     );
   }
 
-  if (!market) {
+  if (!investment) {
     return (
       <div className="text-center p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Investment not found</h2>
         <p className="mt-2 text-gray-600 dark:text-gray-400">The investment you're looking for doesn't exist or has been removed.</p>
-        <Link to="/markets" className="mt-4 inline-block text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        <Link to="/investments" className="mt-4 inline-block text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
           Back to investments
         </Link>
       </div>
@@ -77,13 +77,13 @@ const MarketDetail = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">{market.name}</h1>
+          <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">{investment.name}</h1>
           <div className="mt-1 flex items-center">
             <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded dark:bg-blue-800 dark:text-blue-100">
-              {market.category}
+              {investment.category}
             </span>
             <span className="ml-3 text-sm text-gray-600 dark:text-gray-400">
-              Dividend: ${market.dividend}/share
+              Dividend: ${investment.dividend}/share
             </span>
           </div>
         </div>
@@ -96,37 +96,37 @@ const MarketDetail = () => {
         </div>
       </div>
       
-      {/* Market Overview */}
+      {/* Investment Overview */}
       <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
         <h2 className="text-lg font-medium text-gray-900 dark:text-white">Investment Overview</h2>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">{market.description}</p>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">{investment.description}</p>
         
         <div className="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">24h Volume</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
-              ${market.volume24h.toLocaleString()}
+              ${investment.volume24h.toLocaleString()}
             </p>
           </div>
           
           <div>
             <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Market Cap</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
-              ${market.marketCap.toLocaleString()}
+              ${investment.marketCap.toLocaleString()}
             </p>
           </div>
           
           <div>
             <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">Current Price</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
-              ${market.outcomes[0].price.toFixed(2)}
+              ${investment.outcomes[0].price.toFixed(2)}
             </p>
           </div>
           
           <div>
             <h3 className="text-sm font-medium text-gray-500 truncate dark:text-gray-400">52 Week High</h3>
             <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
-              ${market.outcomes[1].price.toFixed(2)}
+              ${investment.outcomes[1].price.toFixed(2)}
             </p>
           </div>
         </div>
@@ -139,17 +139,17 @@ const MarketDetail = () => {
           <div className="bg-gray-50 p-4 rounded-lg dark:bg-gray-700">
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-medium text-gray-900 dark:text-white">Current Price</h3>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">${market.outcomes[0].price.toFixed(2)}</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">${investment.outcomes[0].price.toFixed(2)}</span>
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Volume:</span>
-                <span className="text-gray-900 dark:text-white">{market.outcomes[0].volume.toLocaleString()}</span>
+                <span className="text-gray-900 dark:text-white">{investment.outcomes[0].volume.toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Change:</span>
-                <span className={market.outcomes[0].change > 0 ? "text-green-600" : "text-red-600"}>
-                  ${market.outcomes[0].change.toFixed(2)} ({(market.outcomes[0].change / (market.outcomes[0].price - market.outcomes[0].change) * 100).toFixed(2)}%)
+                <span className={investment.outcomes[0].change > 0 ? "text-green-600" : "text-red-600"}>
+                  ${investment.outcomes[0].change.toFixed(2)} ({(investment.outcomes[0].change / (investment.outcomes[0].price - investment.outcomes[0].change) * 100).toFixed(2)}%)
                 </span>
               </div>
             </div>
@@ -163,17 +163,17 @@ const MarketDetail = () => {
           <div className="bg-gray-50 p-4 rounded-lg dark:bg-gray-700">
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-medium text-gray-900 dark:text-white">52 Week High</h3>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">${market.outcomes[1].price.toFixed(2)}</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">${investment.outcomes[1].price.toFixed(2)}</span>
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Date:</span>
-                <span className="text-gray-900 dark:text-white">{new Date(market.outcomes[1].date).toLocaleDateString()}</span>
+                <span className="text-gray-900 dark:text-white">{new Date(investment.outcomes[1].date).toLocaleDateString()}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Distance from High:</span>
                 <span className="text-red-600">
-                  -${(market.outcomes[1].price - market.outcomes[0].price).toFixed(2)} ({((market.outcomes[0].price - market.outcomes[1].price) / market.outcomes[1].price * 100).toFixed(2)}%)
+                  -${(investment.outcomes[1].price - investment.outcomes[0].price).toFixed(2)} ({((investment.outcomes[0].price - investment.outcomes[1].price) / investment.outcomes[1].price * 100).toFixed(2)}%)
                 </span>
               </div>
             </div>
@@ -187,7 +187,7 @@ const MarketDetail = () => {
       </div>
       
       {/* Your Positions */}
-      {market.yourPositions.length > 0 && (
+      {investment.yourPositions.length > 0 && (
         <div className="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Your Positions</h2>
           <div className="overflow-x-auto">
@@ -215,14 +215,14 @@ const MarketDetail = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                {market.yourPositions.map((position, index) => {
+                {investment.yourPositions.map((position, index) => {
                   const pnl = calculatePositionPnl(position);
                   const pnlPercentage = ((position.currentPrice - position.avgPrice) / position.avgPrice) * 100;
                   
                   return (
                     <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                        {market.name}
+                        {investment.name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         {position.shares}
@@ -253,4 +253,4 @@ const MarketDetail = () => {
   );
 };
 
-export default MarketDetail; 
+export default InvestmentDetail; 

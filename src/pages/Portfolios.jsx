@@ -18,46 +18,46 @@ const Portfolios = () => {
           {
             id: 1,
             name: 'Conservative Portfolio',
-            description: 'Lower risk markets with high probability outcomes',
+            description: 'Lower risk investments focused on stable growth',
             totalValue: 2345.67,
             pnl: 189.42,
             pnlPercentage: 8.35,
             positions: 6,
             createdAt: '2023-07-15',
-            strategies: ['Market Making', 'Volume Arbitrage']
+            strategies: ['Value Investing', 'Index Tracking']
           },
           {
             id: 2,
             name: 'Aggressive Growth',
-            description: 'Higher risk markets with potential for greater returns',
+            description: 'Higher risk investments with potential for greater returns',
             totalValue: 1876.32,
             pnl: -123.45,
             pnlPercentage: -6.18,
             positions: 4,
             createdAt: '2023-08-22',
-            strategies: ['News Sentiment', 'Correlation Trading']
+            strategies: ['Momentum Trading', 'Growth Stocks']
           },
           {
             id: 3,
-            name: 'Political Events',
-            description: 'Markets focused on political outcomes and elections',
+            name: 'Dividend Income',
+            description: 'Focused on stocks with consistent dividend payouts',
             totalValue: 3567.89,
             pnl: 456.78,
             pnlPercentage: 14.67,
             positions: 5,
             createdAt: '2023-06-10',
-            strategies: ['News Sentiment']
+            strategies: ['Dividend Investing']
           },
           {
             id: 4,
-            name: 'Crypto Markets',
-            description: 'Markets related to cryptocurrency price movements',
+            name: 'Tech Sector',
+            description: 'Investments focused on technology companies',
             totalValue: 1254.36,
             pnl: 67.89,
             pnlPercentage: 5.72,
             positions: 3,
             createdAt: '2023-09-05',
-            strategies: ['Volume Arbitrage']
+            strategies: ['Sector Rotation']
           }
         ];
         

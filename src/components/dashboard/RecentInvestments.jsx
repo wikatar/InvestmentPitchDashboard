@@ -15,8 +15,8 @@ const TrendingDownIcon = () => (
 );
 
 const RecentInvestments = () => {
-  // Mock data for markets
-  const markets = [
+  // Mock data for investments
+  const investments = [
     {
       id: 1,
       name: 'Apple Inc. (AAPL)',
@@ -82,7 +82,7 @@ const RecentInvestments = () => {
                       scope="col" 
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-200 sm:pl-6"
                     >
-                      Market
+                      Security
                     </th>
                     <th 
                       scope="col" 
@@ -117,41 +117,41 @@ const RecentInvestments = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                  {markets.map((market) => (
-                    <tr key={market.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                  {investments.map((investment) => (
+                    <tr key={investment.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white sm:pl-6">
                         <Link 
-                          to={`/markets/${market.id}`} 
+                          to={`/investments/${investment.id}`} 
                           className="hover:text-blue-600 dark:hover:text-blue-400"
                         >
-                          {market.name}
+                          {investment.name}
                         </Link>
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        {market.category}
+                        {investment.category}
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        ${market.volume.toLocaleString()}
+                        ${investment.volume.toLocaleString()}
                       </td>
                       <td className="px-3 py-4 text-sm font-medium text-gray-700 whitespace-nowrap dark:text-gray-300">
-                        ${market.price.toFixed(2)}
+                        ${investment.price.toFixed(2)}
                       </td>
                       <td className="px-3 py-4 text-sm whitespace-nowrap">
                         <div 
                           className={`flex items-center ${
-                            market.trend === 'up' 
+                            investment.trend === 'up' 
                               ? 'text-green-600 dark:text-green-400' 
                               : 'text-red-600 dark:text-red-400'
                           }`}
                         >
-                          {market.trend === 'up' ? <TrendingUpIcon /> : <TrendingDownIcon />}
+                          {investment.trend === 'up' ? <TrendingUpIcon /> : <TrendingDownIcon />}
                           <span className="ml-1">
-                            {market.change > 0 ? '+' : ''}{market.change}%
+                            {investment.change > 0 ? '+' : ''}{investment.change}%
                           </span>
                         </div>
                       </td>
                       <td className="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                        {market.lastTraded}
+                        {investment.lastTraded}
                       </td>
                     </tr>
                   ))}

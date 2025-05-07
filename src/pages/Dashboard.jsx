@@ -122,11 +122,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Markets Section */}
+      {/* Investments Section */}
       <div className="p-5 bg-white rounded-lg shadow dark:bg-gray-800">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">Recent Investments</h2>
-          <Link to="/markets" className="text-sm font-medium text-blue-600 hover:text-blue-500">
+          <Link to="/investments" className="text-sm font-medium text-blue-600 hover:text-blue-500">
             View all
           </Link>
         </div>

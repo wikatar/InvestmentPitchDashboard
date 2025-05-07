@@ -225,4 +225,4 @@ const AccountDetail = () => {
   );
 };
 
-export default WalletDetail; 
+export default AccountDetail; 

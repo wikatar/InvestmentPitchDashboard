@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 
 const Investments = () => {
   const [loading, setLoading] = useState(true);
-  const [markets, setMarkets] = useState([]);
+  const [investments, setInvestments] = useState([]);
   const [filter, setFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const fetchMarkets = async () => {
+    const fetchInvestments = async () => {
       try {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Mock data
-        const mockMarkets = [
+        const mockInvestments = [
           {
             id: 1,
             name: 'Apple Inc. (AAPL)',
@@ -82,21 +82,21 @@ const Investments = () => {
           }
         ];
         
-        setMarkets(mockMarkets);
+        setInvestments(mockInvestments);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching markets:', error);
+        console.error('Error fetching investments:', error);
         setLoading(false);
       }
     };
 
-    fetchMarkets();
+    fetchInvestments();
   }, []);
 
-  // Filter markets based on category and search query
-  const filteredMarkets = markets.filter(market => {
-    const matchesCategory = filter === 'all' || market.category.toLowerCase() === filter.toLowerCase();
-    const matchesSearch = market.name.toLowerCase().includes(searchQuery.toLowerCase());
+  // Filter investments based on category and search query
+  const filteredInvestments = investments.filter(investment => {
+    const matchesCategory = filter === 'all' || investment.category.toLowerCase() === filter.toLowerCase();
+    const matchesSearch = investment.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -147,23 +147,23 @@ const Investments = () => {
         </div>
       </div>
       
-      {/* Markets List */}
-      {filteredMarkets.length === 0 ? (
+      {/* Investments List */}
+      {filteredInvestments.length === 0 ? (
         <div className="p-8 text-center">
           <p className="text-gray-500 dark:text-gray-400">No investments found matching your filters.</p>
         </div>
       ) : (
         <div className="overflow-hidden bg-white shadow rounded-lg dark:bg-gray-800">
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-            {filteredMarkets.map((market) => (
-              <li key={market.id}>
-                <Link to={`/markets/${market.id}`} className="block hover:bg-gray-50 dark:hover:bg-gray-700">
+            {filteredInvestments.map((investment) => (
+              <li key={investment.id}>
+                <Link to={`/investments/${investment.id}`} className="block hover:bg-gray-50 dark:hover:bg-gray-700">
                   <div className="px-4 py-4 sm:px-6">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
                       <div className="mb-2 sm:mb-0">
                         <div className="flex items-center">
-                          <p className="text-lg font-medium text-blue-600 dark:text-blue-400">{market.name}</p>
-                          {market.hasPosition && (
+                          <p className="text-lg font-medium text-blue-600 dark:text-blue-400">{investment.name}</p>
+                          {investment.hasPosition && (
                             <span className="inline-flex items-center px-2.5 py-0.5 ml-2 text-xs font-medium bg-green-100 text-green-800 rounded-full dark:bg-green-800 dark:text-green-100">
                               In Portfolio
                             </span>
@@ -171,11 +171,11 @@ const Investments = () => {
                         </div>
                         <div className="mt-1 flex items-center">
                           <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-800 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                            {market.category}
+                            {investment.category}
                           </span>
-                          {market.expiry !== 'N/A' && (
+                          {investment.expiry !== 'N/A' && (
                             <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
-                              Expires: {new Date(market.expiry).toLocaleDateString()}
+                              Expires: {new Date(investment.expiry).toLocaleDateString()}
                             </span>
                           )}
                         </div>
@@ -184,17 +184,17 @@ const Investments = () => {
                       <div className="flex flex-wrap items-center gap-4">
                         <div className="text-right">
                           <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Volume</p>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">${market.volume.toLocaleString()}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">${investment.volume.toLocaleString()}</p>
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Market Cap</p>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">${market.liquidity.toLocaleString()}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">${investment.liquidity.toLocaleString()}</p>
                         </div>
                       </div>
                     </div>
                     
                     <div className="mt-4 grid grid-cols-2 gap-4">
-                      {market.outcomes.map((outcome, index) => (
+                      {investment.outcomes.map((outcome, index) => (
                         <div key={index} className={`flex justify-between p-2 rounded ${
                           outcome.name === 'Change' && outcome.price < 0 
                             ? 'bg-red-50 dark:bg-red-900/20' 
