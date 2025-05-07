@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Advanced dashboard for Polymarket trading strategies",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -36,6 +37,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.4",
-    "vite": "^4.4.9"
+    "vite": "^6.3.5"
   }
 }
