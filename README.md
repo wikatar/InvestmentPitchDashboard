@@ -1,14 +1,14 @@
-# Polymarket Dashboard
+# Investment Dashboard
 
-A customizable React dashboard for trading and market analysis, built with React, TailwindCSS, and Chart.js.
+A customizable React dashboard for investment tracking and market analysis, built with React, TailwindCSS, and Chart.js.
 
 ## Features
 
 - Responsive design with light/dark mode support
 - Interactive data visualizations with Chart.js
 - Portfolio and strategy performance tracking
-- Market monitoring and analysis tools
-- Wallet balance and transaction tracking
+- Stock and market monitoring tools
+- Investment balance and transaction tracking
 
 ## Getting Started
 
@@ -36,4 +36,4 @@ npm run dev
 
 ## Customization
 
-This dashboard can be easily customized to fit your project's requirements by modifying the components and data sources.
+This dashboard can be easily customized to fit your investment portfolio tracking needs by modifying the components and data sources.

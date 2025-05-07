@@ -11,8 +11,8 @@ const StrategyCreate = lazy(() => import('./pages/StrategyCreate'));
 const Portfolios = lazy(() => import('./pages/Portfolios'));
 const PortfolioDetail = lazy(() => import('./pages/PortfolioDetail'));
 const PortfolioCreate = lazy(() => import('./pages/PortfolioCreate'));
-const Wallets = lazy(() => import('./pages/Wallets'));
-const WalletDetail = lazy(() => import('./pages/WalletDetail'));
+const Accounts = lazy(() => import('./pages/Wallets'));
+const AccountDetail = lazy(() => import('./pages/WalletDetail'));
 const Markets = lazy(() => import('./pages/Markets'));
 const MarketDetail = lazy(() => import('./pages/MarketDetail'));
 const Analytics = lazy(() => import('./pages/Analytics'));
@@ -44,9 +44,9 @@ function App() {
             <Route path=":id" element={<PortfolioDetail />} />
           </Route>
           
-          <Route path="/wallets">
-            <Route index element={<Wallets />} />
-            <Route path=":id" element={<WalletDetail />} />
+          <Route path="/accounts">
+            <Route index element={<Accounts />} />
+            <Route path=":id" element={<AccountDetail />} />
           </Route>
           
           <Route path="/markets">

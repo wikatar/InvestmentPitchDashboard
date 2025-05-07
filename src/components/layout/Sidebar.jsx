@@ -16,7 +16,7 @@ const navigation = [
   { name: 'Dashboard', href: '/', icon: HomeIcon },
   { name: 'Strategies', href: '/strategies', icon: RectangleGroupIcon },
   { name: 'Portfolios', href: '/portfolios', icon: BriefcaseIcon },
-  { name: 'Wallets', href: '/wallets', icon: WalletIcon },
+  { name: 'Accounts', href: '/accounts', icon: WalletIcon },
   { name: 'Markets', href: '/markets', icon: BanknotesIcon },
   { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
   { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
@@ -77,7 +77,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <div className="flex items-center flex-shrink-0 px-4">
-                  <h1 className="text-xl font-bold text-primary-600">Polymarket Dashboard</h1>
+                  <h1 className="text-xl font-bold text-primary-600">Investment Dashboard</h1>
                 </div>
                 <nav className="px-2 mt-5 space-y-1">
                   {navigation.map((item) => (

@@ -17,67 +17,67 @@ const Markets = () => {
         const mockMarkets = [
           {
             id: 1,
-            name: 'Will Trump win the 2024 election?',
-            category: 'Politics',
+            name: 'Apple Inc. (AAPL)',
+            category: 'Technology',
             volume: 3587421.52,
             liquidity: 425632.18,
-            expiry: '2024-11-05',
+            expiry: 'N/A',
             hasPosition: true,
             outcomes: [
-              { name: 'Yes', price: 0.48 },
-              { name: 'No', price: 0.52 }
+              { name: 'Current Price', price: 187.48 },
+              { name: 'Change', price: 1.52 }
             ]
           },
           {
             id: 2,
-            name: 'Will Ethereum price exceed $4000 by Oct 31?',
-            category: 'Crypto',
+            name: 'S&P 500 Index (SPX)',
+            category: 'Index',
             volume: 1289745.35,
             liquidity: 235421.93,
-            expiry: '2023-10-31',
+            expiry: 'N/A',
             hasPosition: false,
             outcomes: [
-              { name: 'Yes', price: 0.32 },
-              { name: 'No', price: 0.68 }
+              { name: 'Current Price', price: 5078.32 },
+              { name: 'Change', price: 12.68 }
             ]
           },
           {
             id: 3,
-            name: 'Will inflation exceed 3% in Q4 2023?',
-            category: 'Economics',
+            name: 'Tesla Inc. (TSLA)',
+            category: 'Automotive',
             volume: 864521.47,
             liquidity: 124587.62,
-            expiry: '2023-12-31',
+            expiry: 'N/A',
             hasPosition: true,
             outcomes: [
-              { name: 'Yes', price: 0.71 },
-              { name: 'No', price: 0.29 }
+              { name: 'Current Price', price: 214.71 },
+              { name: 'Change', price: -3.29 }
             ]
           },
           {
             id: 4,
-            name: 'Will Taylor Swift announce a new album in 2023?',
-            category: 'Entertainment',
+            name: 'Bitcoin (BTC-USD)',
+            category: 'Cryptocurrency',
             volume: 452178.92,
             liquidity: 87452.36,
-            expiry: '2023-12-31',
+            expiry: 'N/A',
             hasPosition: false,
             outcomes: [
-              { name: 'Yes', price: 0.62 },
-              { name: 'No', price: 0.38 }
+              { name: 'Current Price', price: 67242.62 },
+              { name: 'Change', price: 851.38 }
             ]
           },
           {
             id: 5,
-            name: 'Will SpaceX launch Starship to orbit in 2023?',
-            category: 'Science',
+            name: 'NVIDIA Corporation (NVDA)',
+            category: 'Technology',
             volume: 723654.15,
             liquidity: 156842.28,
-            expiry: '2023-12-31',
+            expiry: 'N/A',
             hasPosition: false,
             outcomes: [
-              { name: 'Yes', price: 0.43 },
-              { name: 'No', price: 0.57 }
+              { name: 'Current Price', price: 108.43 },
+              { name: 'Change', price: 1.57 }
             ]
           }
         ];
@@ -124,12 +124,12 @@ const Markets = () => {
               className="block w-full px-3 py-2 mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600"
             >
               <option value="all">All Categories</option>
-              <option value="politics">Politics</option>
-              <option value="crypto">Crypto</option>
-              <option value="economics">Economics</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="science">Science</option>
-              <option value="sports">Sports</option>
+              <option value="technology">Technology</option>
+              <option value="index">Index</option>
+              <option value="automotive">Automotive</option>
+              <option value="cryptocurrency">Cryptocurrency</option>
+              <option value="finance">Finance</option>
+              <option value="energy">Energy</option>
             </select>
           </div>
           
@@ -140,7 +140,7 @@ const Markets = () => {
               id="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by market name..."
+              placeholder="Search by ticker or company name..."
               className="block w-full px-3 py-2 mt-1 text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600"
             />
           </div>
@@ -165,7 +165,7 @@ const Markets = () => {
                           <p className="text-lg font-medium text-blue-600 dark:text-blue-400">{market.name}</p>
                           {market.hasPosition && (
                             <span className="inline-flex items-center px-2.5 py-0.5 ml-2 text-xs font-medium bg-green-100 text-green-800 rounded-full dark:bg-green-800 dark:text-green-100">
-                              Position
+                              In Portfolio
                             </span>
                           )}
                         </div>
@@ -173,9 +173,11 @@ const Markets = () => {
                           <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-800 rounded-full dark:bg-gray-700 dark:text-gray-300">
                             {market.category}
                           </span>
-                          <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
-                            Expires: {new Date(market.expiry).toLocaleDateString()}
-                          </span>
+                          {market.expiry !== 'N/A' && (
+                            <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                              Expires: {new Date(market.expiry).toLocaleDateString()}
+                            </span>
+                          )}
                         </div>
                       </div>
                       
@@ -185,7 +187,7 @@ const Markets = () => {
                           <p className="text-sm text-gray-500 dark:text-gray-400">${market.volume.toLocaleString()}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Liquidity</p>
+                          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Market Cap</p>
                           <p className="text-sm text-gray-500 dark:text-gray-400">${market.liquidity.toLocaleString()}</p>
                         </div>
                       </div>
@@ -193,9 +195,24 @@ const Markets = () => {
                     
                     <div className="mt-4 grid grid-cols-2 gap-4">
                       {market.outcomes.map((outcome, index) => (
-                        <div key={index} className="flex justify-between p-2 bg-gray-50 rounded dark:bg-gray-700">
+                        <div key={index} className={`flex justify-between p-2 rounded ${
+                          outcome.name === 'Change' && outcome.price < 0 
+                            ? 'bg-red-50 dark:bg-red-900/20' 
+                            : outcome.name === 'Change' && outcome.price > 0
+                              ? 'bg-green-50 dark:bg-green-900/20'
+                              : 'bg-gray-50 dark:bg-gray-700'
+                        }`}>
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{outcome.name}</span>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">${outcome.price.toFixed(2)}</span>
+                          <span className={`text-sm font-semibold ${
+                            outcome.name === 'Change' && outcome.price < 0
+                              ? 'text-red-600 dark:text-red-400'
+                              : outcome.name === 'Change' && outcome.price > 0
+                                ? 'text-green-600 dark:text-green-400'
+                                : 'text-gray-900 dark:text-white'
+                          }`}>
+                            {outcome.name === 'Change' && outcome.price > 0 ? '+' : ''}
+                            {outcome.price.toFixed(2)}
+                          </span>
                         </div>
                       ))}
                     </div>

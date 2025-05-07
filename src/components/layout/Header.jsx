@@ -19,7 +19,7 @@ const navigation = [
   { name: 'Dashboard', href: '/', icon: HomeIcon },
   { name: 'Strategies', href: '/strategies', icon: RectangleGroupIcon },
   { name: 'Portfolios', href: '/portfolios', icon: BriefcaseIcon },
-  { name: 'Wallets', href: '/wallets', icon: WalletIcon },
+  { name: 'Accounts', href: '/accounts', icon: WalletIcon },
   { name: 'Markets', href: '/markets', icon: BanknotesIcon },
   { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
   { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
@@ -54,7 +54,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
         </button>
         
         <div className="flex items-center flex-shrink-0 ml-4 md:ml-0">
-          <h1 className="text-xl font-bold text-primary-600">Polymarket Dashboard</h1>
+          <h1 className="text-xl font-bold text-primary-600">Investment Dashboard</h1>
         </div>
         
         <div className="flex justify-between flex-1 ml-4">
